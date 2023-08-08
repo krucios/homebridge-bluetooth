@@ -2,7 +2,7 @@
   "name": "@krucios/homebridge-bluetooth",
   "description": "Homebridge plugin that exposes Bluetooth peripherals as HomeKit accessories",
   "author": "Vojta Molda, Andrei Pazniak",
-  "version": "0.1.7-02",
+  "version": "0.1.7-03",
   "license": "MIT",
   "keywords": [
     "homebridge-plugin",
@@ -22,8 +22,7 @@
   },
   "dependencies": {
     "@abandonware/bluetooth-hci-socket": "^0.5.3-10",
-    "@abandonware/noble": "^1.9.2-23",
-    "chalk": ">=1.1.1"
+    "@abandonware/noble": "^1.9.2-23"
   },
   "homepage": "https://github.com/krucios/homebridge-bluetooth#readme"
 }

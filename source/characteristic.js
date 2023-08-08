@@ -1,5 +1,4 @@
 var Characteristic;
-var Chalk = require('chalk');
 
 module.exports = function (characteristic) {
   Characteristic = characteristic;
@@ -15,7 +14,7 @@ function BluetoothCharacteristic(log, config, prefix) {
     throw new Error(this.prefix + " Missing mandatory config 'type'");
   }
   this.type = config.type;
-  this.prefix = prefix + " " + Chalk.green("[" + this.type + "]");
+  this.prefix = prefix + " [" + this.type + "]";
   if (!Characteristic[this.type]) {
     throw new Error(this.prefix + " Characteristic type '" + this.type + "' is not defined. " +
                     "See 'HAP-NodeJS/lib/gen/HomeKitType.js' for options.")
