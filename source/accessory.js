@@ -1,5 +1,4 @@
 var Accessory, BluetoothService;
-var Chalk = require('chalk');
 
 module.exports = function (accessory, bluetoothService) {
   Accessory = accessory;
@@ -16,7 +15,7 @@ function BluetoothAccessory(log, config) {
     throw new Error("Missing mandatory config 'name'");
   }
   this.name = config.name;
-  this.prefix = Chalk.blue("[" + config.name + "]");
+  this.prefix = "[" + config.name + "]";
 
   if (!config.address) {
     throw new Error(this.prefix + " Missing mandatory config 'address'");

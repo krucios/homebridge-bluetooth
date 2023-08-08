@@ -1,5 +1,4 @@
 var Service, BluetoothCharacteristic;
-var Chalk = require('chalk');
 
 module.exports = function (service, bluetoothCharacteristic) {
   Service = service;
@@ -16,7 +15,7 @@ function BluetoothService(log, config, prefix) {
     throw new Error("Missing mandatory config 'name'");
   }
   this.name = config.name;
-  this.prefix = prefix + " " + Chalk.magenta("[" + this.name + "]");
+  this.prefix = prefix + " [" + this.name + "]";
 
   if (!config.type) {
     throw new Error(this.prefix + " Missing mandatory config 'type'");
