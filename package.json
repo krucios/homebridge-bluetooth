@@ -17,12 +17,12 @@
     "url": "https://github.com/krucios/homebridge-bluetooth/issues"
   },
   "engines": {
-    "node": ">=18.17.0",
+    "node": ">=18.16.0",
     "homebridge": ">=1.6.0"
   },
   "dependencies": {
-    "@abandonware/noble": ">=1.9.2",
-    "@abandonware/bluetooth-hci-socket": ">=0.5.3",
+    "@abandonware/bluetooth-hci-socket": "^0.5.3-10",
+    "@abandonware/noble": "^1.9.2-23",
     "chalk": ">=1.1.1"
   },
   "homepage": "https://github.com/krucios/homebridge-bluetooth#readme"
