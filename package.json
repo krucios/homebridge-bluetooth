@@ -11,17 +11,18 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/vojtamolda/homebridge-bluetooth.git"
+    "url": "https://github.com/krucios/homebridge-bluetooth"
   },
   "bugs": {
-    "url": "https://github.com/vojtamolda/homebridge-bluetooth/issues"
+    "url": "https://github.com/krucios/homebridge-bluetooth/issues"
   },
   "engines": {
-    "node": ">=4.3.2",
-    "homebridge": ">=0.4.6"
+    "node": ">=18.17.0",
+    "homebridge": ">=1.6.0"
   },
   "dependencies": {
-    "noble": ">=1.7.0",
+    "@abandonware/noble": ">=1.9.2",
+    "@abandonware/bluetooth-hci-socket": ">=0.5.3",
     "chalk": ">=1.1.1"
   }
 }
