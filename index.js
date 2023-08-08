@@ -3,7 +3,7 @@ var Noble, Accessory, Service, Characteristic, UUIDGen;
 module.exports = function (homebridge) {
   console.log("Homebridge API version: " + homebridge.version);
 
-  Noble = require('noble');
+  Noble = require('@abandonware/noble');
   Accessory = homebridge.platformAccessory;
   Service = homebridge.hap.Service;
   Characteristic = homebridge.hap.Characteristic;
