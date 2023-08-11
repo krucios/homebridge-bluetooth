@@ -107,7 +107,7 @@ BluetoothCharacteristic.prototype.notify = function (buffer, notification) {
 
 BluetoothCharacteristic.prototype.toBuffer = function (value) {
   var buffer;
-  this.log.debug(chalk.red("toBuffer called for characteristic format: " + this.homebridgeCharacteristic.props['format']));
+
   switch (this.homebridgeCharacteristic.props['format']) {
     case Characteristic.Formats.BOOL: // BLECharCharacteristic
       buffer = Buffer.alloc(1);
@@ -153,7 +153,7 @@ BluetoothCharacteristic.prototype.toBuffer = function (value) {
 
 BluetoothCharacteristic.prototype.fromBuffer = function (buffer) {
   var value;
-  this.log.debug(chalk.red("fromBuffer called for characteristic format: " + this.homebridgeCharacteristic.props['format']));
+
   switch (this.homebridgeCharacteristic.props['format']) {
     case Characteristic.Formats.BOOL: // BLECharCharacteristic
       value = buffer.readInt8(0);
