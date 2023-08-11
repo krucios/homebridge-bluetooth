@@ -3,7 +3,7 @@
   "displayName": "Homebridge Bluetoth",
   "description": "Homebridge plugin that exposes Bluetooth peripherals as HomeKit accessories",
   "author": "Vojta Molda, Andrei Pazniak",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "license": "MIT",
   "type": "module",
   "keywords": [
