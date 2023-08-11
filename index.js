@@ -1,18 +1,16 @@
-var Noble, Accessory, Service, Characteristic, UUIDGen;
+import Noble from '@abandonware/noble';
+import Characteristic from './src/characteristic.js';
+import Service from './src/service.js';
+import Accessory from './src/accessory.js';
+import Platform from './src/platform.js';
 
-module.exports = function (homebridge) {
+export default function (homebridge) {
   console.log("Homebridge API version: " + homebridge.version);
 
-  Noble = require('@abandonware/noble');
-  Accessory = homebridge.platformAccessory;
-  Service = homebridge.hap.Service;
-  Characteristic = homebridge.hap.Characteristic;
-  UUIDGen = homebridge.hap.uuid;
+  let BluetoothCharacteristic = Characteristic(homebridge.hap.Characteristic);
+  let BluetoothService = Service(homebridge.hap.Service, BluetoothCharacteristic);
+  let BluetoothAccessory = Accessory(homebridge.platformAccessory, BluetoothService);
+  let BluetoothPlatform = Platform(Noble, homebridge.hap.uuid, homebridge.platformAccessory, BluetoothAccessory);
 
-  BluetoothCharacteristic = require("./source/characteristic.js")(Characteristic);
-  BluetoothService = require("./source/service.js")(Service, BluetoothCharacteristic);
-  BluetoothAccessory = require("./source/accessory.js")(Accessory, BluetoothService);
-  BluetoothPlatform = require("./source/platform.js")(Noble, UUIDGen, Accessory, BluetoothAccessory);
-
-  homebridge.registerPlatform("homebridge-bluetooth", "Bluetooth", BluetoothPlatform, true);
+  homebridge.registerPlatform("Bluetooth", BluetoothPlatform);
 };

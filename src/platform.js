@@ -1,6 +1,8 @@
+import chalk from 'chalk';
+
 var Noble, UUIDGen, Accessory, BluetoothAccessory;
 
-module.exports = function (noble, uuidGen, accessory, bluetoothAccessory) {
+export default function (noble, uuidGen, accessory, bluetoothAccessory) {
   Noble = noble;
   UUIDGen = uuidGen
   Accessory = accessory;
@@ -22,12 +24,16 @@ function BluetoothPlatform(log, config, homebridgeAPI) {
     this.log.warn("Missing mandatory config 'accessories'");
     return;
   }
+
   this.bluetoothAccessories = {};
   for (var accessoryConfig of config.accessories) {
     var accessoryAddress = trimAddress(accessoryConfig.address);
     var bluetoothAccessory = new BluetoothAccessory(this.log, accessoryConfig);
     this.bluetoothAccessories[accessoryAddress] = bluetoothAccessory;
+
+    this.log.debug("Included accessory: " + accessoryConfig.name + " (" + accessoryConfig.address + ")");
   }
+
   this.cachedHomebridgeAccessories = {};
 
   this.homebridgeAPI = homebridgeAPI;
@@ -40,7 +46,7 @@ BluetoothPlatform.prototype.configureAccessory = function (homebridgeAccessory) 
   var bluetoothAccessory = this.bluetoothAccessories[accessoryAddress];
   if (!bluetoothAccessory) {
     this.log.debug("Removed | " + homebridgeAccessory.displayName + " (" + accessoryAddress + ")");
-    this.homebridgeAPI.unregisterPlatformAccessories("homebridge-bluetooth", "Bluetooth",
+    this.homebridgeAPI.unregisterPlatformAccessories("@krucios/homebridge-bluetooth", "Bluetooth",
                                                      [homebridgeAccessory]);
     return;
   }
@@ -95,10 +101,11 @@ BluetoothPlatform.prototype.connect = function (error, nobleAccessory) {
   var bluetoothAccessory = this.bluetoothAccessories[accessoryAddress];
   var homebridgeAccessory = this.cachedHomebridgeAccessories[accessoryAddress];
   if (!homebridgeAccessory) {
+    // TODO: configure accessory type via config
     homebridgeAccessory = new Accessory(bluetoothAccessory.name,
-                                        UUIDGen.generate(bluetoothAccessory.name));
+                                        UUIDGen.generate(bluetoothAccessory.name), 10);
     homebridgeAccessory.context['address'] = accessoryAddress;
-    this.homebridgeAPI.registerPlatformAccessories("homebridge-bluetooth", "Bluetooth",
+    this.homebridgeAPI.registerPlatformAccessories("@krucios/homebridge-bluetooth", "Bluetooth",
                                                    [homebridgeAccessory]);
   } else {
     delete this.cachedHomebridgeAccessories[accessoryAddress];

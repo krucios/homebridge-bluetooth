@@ -1,6 +1,8 @@
+import chalk from 'chalk';
+
 var Characteristic;
 
-module.exports = function (characteristic) {
+export default function (characteristic) {
   Characteristic = characteristic;
 
   return BluetoothCharacteristic;
@@ -14,7 +16,7 @@ function BluetoothCharacteristic(log, config, prefix) {
     throw new Error(this.prefix + " Missing mandatory config 'type'");
   }
   this.type = config.type;
-  this.prefix = prefix + " [" + this.type + "]";
+  this.prefix = prefix + " " + chalk.green("[" + this.type + "]");
   if (!Characteristic[this.type]) {
     throw new Error(this.prefix + " Characteristic type '" + this.type + "' is not defined. " +
                     "See 'HAP-NodeJS/lib/gen/HomeKitType.js' for options.")
@@ -105,6 +107,7 @@ BluetoothCharacteristic.prototype.notify = function (buffer, notification) {
 
 BluetoothCharacteristic.prototype.toBuffer = function (value) {
   var buffer;
+  this.log.debug(chalk.red("toBuffer called for characteristic format: " + this.homebridgeCharacteristic.props['format']));
   switch (this.homebridgeCharacteristic.props['format']) {
     case Characteristic.Formats.BOOL: // BLECharCharacteristic
       buffer = Buffer.alloc(1);
@@ -150,6 +153,7 @@ BluetoothCharacteristic.prototype.toBuffer = function (value) {
 
 BluetoothCharacteristic.prototype.fromBuffer = function (buffer) {
   var value;
+  this.log.debug(chalk.red("fromBuffer called for characteristic format: " + this.homebridgeCharacteristic.props['format']));
   switch (this.homebridgeCharacteristic.props['format']) {
     case Characteristic.Formats.BOOL: // BLECharCharacteristic
       value = buffer.readInt8(0);
