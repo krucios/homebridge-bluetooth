@@ -2,7 +2,7 @@
 # homebridge-bluetooth
 
 
-[![NPM version](https://badge.fury.io/js/homebridge-bluetooth.svg)](https://badge.fury.io/js/homebridge-bluetooth)
+[![npm version](https://badge.fury.io/js/@krucios%2Fhomebridge-bluetooth.svg)](https://badge.fury.io/js/@krucios%2Fhomebridge-bluetooth)
 
 [Homebridge](https://github.com/nfarina/homebridge) plugin for exposing services and
 characteristics of nearby [Bluetooth Low Energy](https://www.bluetooth.com/what-is-bluetooth-technology/bluetooth-technology-basics/low-energy) (BLE) peripherals as [HomeKit](https://www.apple.com/ios/home/) accesories. Ideal for wireless DIY home automation projects if you'd like to control them comfortably with Siri on any Apple device.
@@ -18,10 +18,11 @@ Homebridge runs on top of [Node.js](https://nodejs.org) server and is an open-so
 Make sure your systems matches the [prerequisites](#what-are-the-prerequisites-for-installation). You need to have a C compiler, [Node.js](https://nodejs.org) server and if you're running on Linux the [`libbluez-dev`](http://www.bluez.org/download/) library.
 
 ### Install Homebridge & Noble
-[Homebridge](https://github.com/nfarina/homebridge) is a lightweight framework built on top of [Node.js](https://nodejs.org/) server that provides the HomeKit bridge for your Apple devices to connect to. [Noble](https://github.com/sandeepmistry/noble) is BLE central module library for [Node.js](https://nodejs.org/) that abstracts away intricacies of each OS BLE stack implementation and provides a nice universal high-level API.
+[Homebridge](https://github.com/nfarina/homebridge) is a lightweight framework built on top of [Node.js](https://nodejs.org/) server that provides the HomeKit bridge for your Apple devices to connect to. [Noble](https://github.com/abandonware/noble) is BLE central module library for [Node.js](https://nodejs.org/) that abstracts away intricacies of each OS BLE stack implementation and provides a nice universal high-level API (Sine the [original Noble](https://github.com/sandeepmistry/noble) is no longer continued, please use [@abandonware/noble](https://github.com/abandonware/noble)).
 
 ```sh
-[sudo] npm install -g noble
+[sudo] npm install -g @abandonware/noble
+[sudo] npm install -g @abandonware/node-bluetooth-hci-socket
 [sudo] npm install -g --unsafe-perm homebridge node-gyp
 [sudo] npm install -g homebridge-bluetooth
 ```
